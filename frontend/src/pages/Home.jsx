@@ -1,6 +1,6 @@
 const Home = ()=>{
     return(<>
-        <p>page de  homme</p>
+        <p className="">page de  homme</p>
     
     </>)
 }
