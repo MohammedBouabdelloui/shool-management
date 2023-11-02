@@ -1,7 +1,10 @@
+import Studentlogin from "../components/student/studentlogin";
+
 export default function Register(){
 
     return(<>
-        <p>page regester</p>
-    </>)
+            <h1>student page register</h1>
+            
+            </>)
 
 } 
