@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input"
  
 const formSchema = z.object({
   email: z.string().email().min(5),
-  password: z.string()
+  password: z.string().min(8)
 })
 
 
@@ -42,12 +42,29 @@ export default function Studentlogin(){
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="username"
+          name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" name="email"{...field} />
+                <Input  type={'email'} placeholder="E-mail"{...field} />
+              </FormControl>
+              <FormDescription>
+                This is your public display name.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Passwod</FormLabel>
+              <FormControl>
+                <Input type={'password'} placeholder="password"{...field} />
               </FormControl>
               <FormDescription>
                 This is your public display name.
