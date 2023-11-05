@@ -13,6 +13,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { AxiosClient } from "../../api/axios"
 
  
 const formSchema = z.object({
@@ -27,14 +28,15 @@ export default function Studentlogin(){
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: "simo@gmail.com",
+      password: "12345678",
     },
   })
  
   // 2. Define a submit handler.
-  function onSubmit(values) {
-    console.log(values)
+  const  onSubmit= async values=>{
+    const data = await AxiosClient.post('/login' , values)
+    console.log(data)
   }
 
   return (
@@ -49,9 +51,6 @@ export default function Studentlogin(){
               <FormControl>
                 <Input  type={'email'} placeholder="E-mail"{...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -66,9 +65,6 @@ export default function Studentlogin(){
               <FormControl>
                 <Input type={'password'} placeholder="password"{...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
