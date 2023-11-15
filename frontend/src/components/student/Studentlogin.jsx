@@ -26,7 +26,7 @@ const formSchema = z.object({
 
 export default function Studentlogin(){
   const navigate = useNavigate()
-  
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -39,13 +39,17 @@ export default function Studentlogin(){
   const  onSubmit = async (values)=>{
     
     await AxiosClient.get('/sanctum/csrf-cookie');
-    const data = await AxiosClient.post('/login',values)
-    if(data.status === 204){
-      navigate('/student/dashboard')
-    }
-    else{
-      form.setError("")
-    }
+    const data = await AxiosClient.post('/login',values).then((values)=>{
+
+      if(values.status === 204){
+        navigate('/student/dashboard')
+      }
+    }).catch((values)=>{
+     
+      form.setError("email",{
+        message : values.response.data.errors.email.join(),
+      })
+    })
 
   }
 
