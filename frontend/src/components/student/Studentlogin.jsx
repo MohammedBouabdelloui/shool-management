@@ -15,6 +15,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { AxiosClient } from "../../api/axios"
 
+import {Loader2} from "lucide-react";
+
  
 const formSchema = z.object({
   email: z.string().email().min(5),
@@ -26,7 +28,7 @@ const formSchema = z.object({
 
 export default function Studentlogin(){
   const navigate = useNavigate()
-
+  
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,27 +36,30 @@ export default function Studentlogin(){
       password: "password",
     },
   })
- 
+  const isSubmitting = form.formState.isSubmitting;
+  
   // 2. Define a submit handler.
   const  onSubmit = async (values)=>{
     
+    
     await AxiosClient.get('/sanctum/csrf-cookie');
     const data = await AxiosClient.post('/login',values).then((values)=>{
-
       if(values.status === 204){
         navigate('/student/dashboard')
       }
     }).catch((values)=>{
-     
+  
       form.setError("email",{
         message : values.response.data.errors.email.join(),
       })
+      //form.formState.isSubmitting;
     })
 
   }
 
   return (
     <Form {...form}>
+      
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
@@ -83,7 +88,8 @@ export default function Studentlogin(){
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        
+        <Button disabled={isSubmitting}  type="submit">{isSubmitting && <Loader2 className="mx-2 z-1 animate-spin" />} LOgin</Button>
       </form>
     </Form>
   )
