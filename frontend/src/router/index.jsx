@@ -6,6 +6,10 @@ import Users from "../pages/users";
 import Notfound from "../pages/Notfound";
 import Layout from "../layouts/Layout";
 
+// les route
+export const STUDENT_DASHBOARD_ROUTE = '/student/dashboard';
+export const LOGIN_ROUTE = "/login";
+
 export const router = createBrowserRouter(
   [
     {
@@ -16,7 +20,7 @@ export const router = createBrowserRouter(
           element: <Home />,
         },
         {
-          path: '/login',
+          path: LOGIN_ROUTE ,
           element: <Login />,
         },
         {
@@ -26,6 +30,10 @@ export const router = createBrowserRouter(
         {
           path: '/user',
           element: <Users />,
+        },
+        {
+          path: STUDENT_DASHBOARD_ROUTE,
+          element: <h1>page student dashboard </h1>,
         },
         {
           path: '*',

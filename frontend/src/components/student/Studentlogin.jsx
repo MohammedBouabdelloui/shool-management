@@ -1,7 +1,7 @@
 import * as z from "zod"
 import {useForm} from "react-hook-form"
 import {zodResolver} from "@hookform/resolvers/zod"
-
+import {useNavigate} from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -23,20 +23,30 @@ const formSchema = z.object({
 
 
 
-export default function Studentlogin(){
 
+export default function Studentlogin(){
+  const navigate = useNavigate()
+  
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "simo@gmail.com",
-      password: "12345678",
+      email: "simoboolz@gmail.com",
+      password: "password",
     },
   })
  
   // 2. Define a submit handler.
-  const  onSubmit= async values=>{
-    const data = await AxiosClient.post('/login' , values)
-    console.log(data)
+  const  onSubmit = async (values)=>{
+    
+    await AxiosClient.get('/sanctum/csrf-cookie');
+    const data = await AxiosClient.post('/login',values)
+    if(data.status === 204){
+      navigate('/student/dashboard')
+    }
+    else{
+      form.setError("")
+    }
+
   }
 
   return (
