@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link, Outlet } from 'react-router-dom'
 import logo from "../components/ui/logo.svg"
-function Layout() {
+function GestLayout() {
   return (<>
         <header>
           <nav className="bg-gray-800">
@@ -35,4 +35,4 @@ function Layout() {
     </>)
 }
 
-export default Layout
+export default GestLayout

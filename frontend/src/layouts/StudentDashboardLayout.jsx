@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link, Outlet } from 'react-router-dom'
 import logo from "../components/ui/logo.svg"
-function Layout() {
+function StudentDashboardLayout() {
   return (<>
         <header>
           <nav className="bg-gray-800">
@@ -18,10 +18,10 @@ function Layout() {
                   </div>
                   <div className="hidden sm:ml-6 sm:block absolute right-0 ">
                     <div className="flex space-x-14 ">
-                      <Link to={'/'} className='bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium '  >Home</Link>
-                      <Link to={'/user'}  className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">User</Link>
-                      <Link to={'/login'} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">login</Link>
-                      <Link to={'/register'} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">register</Link>
+                      <Link to={'/'} className=' text-white rounded-md px-3 py-2 text-sm font-medium '  >Home</Link>
+
+                      <Link to={'/login'} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">logout</Link>
+                      <Link to={'/student/dashboard'} className="bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Dashboard</Link>
                     </div>
                   </div>
                 </div>
@@ -35,4 +35,4 @@ function Layout() {
     </>)
 }
 
-export default Layout
+export default StudentDashboardLayout

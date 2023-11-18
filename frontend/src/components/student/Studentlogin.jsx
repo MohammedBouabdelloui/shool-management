@@ -16,6 +16,8 @@ import { Input } from "@/components/ui/input"
 import { AxiosClient } from "../../api/axios"
 
 import {Loader2} from "lucide-react";
+import { useEffect } from "react"
+import { STUDENT_DASHBOARD_ROUTE } from "../../router"
 
  
 const formSchema = z.object({
@@ -27,7 +29,18 @@ const formSchema = z.object({
 
 
 export default function Studentlogin(){
-  const navigate = useNavigate()
+  
+  const navigate = useNavigate();
+
+  
+  useEffect(()=>{
+    if(window.localStorage.getItem('ACCSESS_TOKEN')){
+      navigate(STUDENT_DASHBOARD_ROUTE)
+    }
+  },[])
+
+
+
   
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -45,6 +58,7 @@ export default function Studentlogin(){
     await AxiosClient.get('/sanctum/csrf-cookie');
     const data = await AxiosClient.post('/login',values).then((values)=>{
       if(values.status === 204){
+        window.localStorage.setItem('ACCSESS_TOKEN' , 'test');
         navigate('/student/dashboard')
       }
     }).catch((values)=>{
@@ -89,7 +103,7 @@ export default function Studentlogin(){
           )}
         />
         
-        <Button disabled={isSubmitting}  type="submit">{isSubmitting && <Loader2 className="mx-2 z-1 animate-spin" />} LOgin</Button>
+        <Button disabled={isSubmitting}  type="submit">{isSubmitting && <Loader2 className="mx-2 z-1 animate-spin" />} Login</Button>
       </form>
     </Form>
   )
