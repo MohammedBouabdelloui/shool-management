@@ -7,6 +7,7 @@ import Notfound from "../pages/Notfound";
 import Layout from "../layouts/Layout";
 import GestLayout from "../layouts/GestLayout";
 import StudentDashboardLayout from "../layouts/StudentDashboardLayout";
+import StudentDashboard from "../components/student/StudentDashboard";
 
 // les route
 export const STUDENT_DASHBOARD_ROUTE = '/student/dashboard';
@@ -37,6 +38,7 @@ export const router = createBrowserRouter(
         },
       ]
     },
+
     {
       element : <GestLayout />,
       children : [
@@ -46,12 +48,13 @@ export const router = createBrowserRouter(
         },
       ]
     },
+    
     {
       element : <StudentDashboardLayout />,
       children : [
         {
           path: STUDENT_DASHBOARD_ROUTE,
-          element: <h1>page student dashboard </h1>,
+          element: <StudentDashboard />,
         },
       ]
     }

@@ -45,7 +45,7 @@ export default function Studentlogin(){
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "simoboolz@gmail.com",
+      email: "simoboolz@gmil.com",
       password: "password",
     },
   })
@@ -60,7 +60,7 @@ export default function Studentlogin(){
       
       if(values.status === 204){
         window.localStorage.setItem('ACCSESS_TOKEN' , 'test');
-        navigate('/student/dashboard')
+        navigate(STUDENT_DASHBOARD_ROUTE)
       }
     }).catch((values)=>{
   
