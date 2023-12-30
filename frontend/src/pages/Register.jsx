@@ -1,4 +1,4 @@
-import Studentlogin from "../components/student/studentlogin";
+
 
 export default function Register(){
 

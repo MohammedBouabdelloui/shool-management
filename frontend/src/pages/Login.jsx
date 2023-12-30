@@ -1,4 +1,4 @@
-import Studentlogin from "../components/student/studentlogin"
+import Studentlogin from "../components/student/Studentlogin"
 
 const Login =()=>{
 return(<>
